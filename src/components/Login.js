@@ -1,7 +1,10 @@
-import React from 'react'
 import styled from 'styled-components'
 import klubg from '../static/images/klu.gif'
 import klulogo from '../static/images/klulogo.png'
+import React, { useState } from 'react';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { gapi } from "gapi-script";
+
 
 const Bodyconatiner = styled.div`
     width: 100%;
@@ -99,7 +102,7 @@ const LoginClose = styled.div`
 
 const LoginBody = styled.div`
     width: 20vw;
-    height: 50vh;
+    height: 30vh;
     padding: 3vh 2.5vw;
     background-color: white;
 `;
@@ -111,9 +114,37 @@ const LoginFooter = styled.div`
     background-color: #A51C24;
 `;
 
+
 function Login() {
 
+    gapi.load("client:auth2", () => {
+        gapi.client.init({
+          clientId:
+            '887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com',
+          plugin_name: "chat",
+        });
+      });
+
     const [loginChoice, setLoginChoice] = React.useState('none');
+    const [showloginButton, setShowloginButton] = useState(true);
+    const [showlogoutButton, setShowlogoutButton] = useState(false);
+    const onLoginSuccess = (res) => {
+        console.log('Login Success:', res.profileObj);
+        setShowloginButton(false);
+        setShowlogoutButton(true);
+    };
+
+    const onLoginFailure = (res) => {
+        console.log('Login Failed:', res);
+    };
+
+    const onSignoutSuccess = () => {
+        alert("You have been logged out successfully");
+        console.clear();
+        setShowloginButton(true);
+        setShowlogoutButton(false);
+    };
+    
 
   return (
     <React.Fragment>
@@ -138,10 +169,17 @@ function Login() {
                             <LoginClose  onClick={()=> {setLoginChoice('none')}}>
                                 &#10060;
                             </LoginClose>
-                        </LogoContainer>
-                        <LoginBody>
-                            
-                        </LoginBody>
+                            </LogoContainer>
+                                <LoginBody>
+                                <GoogleLogin
+                                    clientId="887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com"
+                                    buttonText="Sign In"
+                                    onSuccess={onLoginSuccess}
+                                    onFailure={onLoginFailure}
+                                    cookiePolicy={'single_host_origin'}
+                                    isSignedIn={true}
+                                /> 
+                            </LoginBody>
                         <LoginFooter>
                             <p>© Copyright 2019 by K L Deemed to be University.</p>
                         </LoginFooter>

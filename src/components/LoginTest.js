@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from "gapi-script";
 
-const clientId = "887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com";
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function LoginTest() {
 
     gapi.load("client:auth2", () => {
         gapi.client.init({
           clientId:
-            "*****.apps.googleusercontent.com",
+            '887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com',
           plugin_name: "chat",
         });
       });
@@ -37,7 +37,7 @@ function LoginTest() {
         <div>
             { showloginButton ?
                 <GoogleLogin
-                    clientId={clientId}
+                    clientId="887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com"
                     buttonText="Sign In"
                     onSuccess={onLoginSuccess}
                     onFailure={onLoginFailure}
