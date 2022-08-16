@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Klmainlogo from '../static/images/klmainlogo.png'
-
+import {  Link } from "react-router-dom";       
 
 const Navbars = styled.div`
     padding: 5px;
@@ -83,6 +83,8 @@ function Navbar() {
                 <NavLogo>
                     <NavLogoText>KLU T</NavLogoText>
                 </NavLogo>
+                    <Link to="/nandu">Dogs</Link>
+                    <Link to="/updateprofile">Update Profile</Link>
                 <NavLogout>
                     <p>Logout</p>
                 </NavLogout>

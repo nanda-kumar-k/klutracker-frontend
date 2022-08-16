@@ -31,7 +31,7 @@
     margin-right: 20px;
   }
   .nav {
-    background-color: #A51C24;
+    background-color: #beb9b97b;
     display: flex;
     width: 100%;
     height: 6.5vh;
@@ -40,7 +40,7 @@
     align-items: center;
   }
   .nav .nav-logo {
-      color: white;
+      color: rgb(154, 144, 144);
       width: 120px;
       height: 6.5vh;
       background-color: #337ab7;
