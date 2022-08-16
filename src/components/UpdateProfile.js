@@ -106,6 +106,15 @@ function UpdateProfile() {
         cursor: pointer;
 
       `;
+      const CheckBoxContainer = styled.div`
+        display: flex;
+      `;
+
+      const CheckBox = styled.input`
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      `;
 
 // background: #3498db;
 // /*background:linear-gradient(rgb(99, 144, 160),white);*/
@@ -227,6 +236,33 @@ function UpdateProfile() {
                           <StudentInput />
                       </InputWithLabel>
                   </EachRowLabel>
+              </EachRow>
+            </StudentContainer>
+            <br/>
+          <Title>Certification Completion</Title>
+          <StudentContainer size='30vh'>
+              <EachRow>
+                  <EachRowLabel>
+                      <CheckBoxContainer>
+                          <CheckBox type='checkbox' ></CheckBox>
+                          <OptionTitle>AWS Certified Cloud Practitioner</OptionTitle>
+                      </CheckBoxContainer>
+                      <InputWithLabel>
+                          <InputWithLabelLeft size='16vw'>Validation Number</InputWithLabelLeft>
+                          <StudentInput />
+                      </InputWithLabel>
+                  </EachRowLabel>
+                  <EachRowLabel>
+                      <CheckBoxContainer>
+                          <CheckBox type='checkbox' ></CheckBox>
+                          <OptionTitle>AWS Certified Developer - Associate</OptionTitle>
+                      </CheckBoxContainer>
+                      <InputWithLabel>
+                          <InputWithLabelLeft size='16vw'>Validation Number</InputWithLabelLeft>
+                          <StudentInput />
+                      </InputWithLabel>
+                  </EachRowLabel>
+                  
               </EachRow>
             </StudentContainer>
             <ButtonContainer>
