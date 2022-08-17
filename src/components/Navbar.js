@@ -85,6 +85,7 @@ function Navbar() {
                 </NavLogo>
                     <Link to="/nandu">Dogs</Link>
                     <Link to="/updateprofile">Update Profile</Link>
+                    <Link to="/leaderboard">Leaderboard</Link>
                 <NavLogout>
                     <p>Logout</p>
                 </NavLogout>

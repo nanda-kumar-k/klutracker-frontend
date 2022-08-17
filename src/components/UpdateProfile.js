@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import Navbar from './Navbar';
+import {useRef} from 'react';
+
 function UpdateProfile() {
 
     const BodyConatiner = styled.div`
@@ -120,9 +122,16 @@ function UpdateProfile() {
 // /*background:linear-gradient(rgb(99, 144, 160),white);*/
 // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+const getInputValue = (event)=>{
+    // show the user input value to console
+    const userValue = event.target.value;
 
+    console.log(userValue);
+};
 
   return (
+
+
     <React.Fragment>
         <BodyConatiner>
           <Title>Student Profile</Title>
@@ -130,7 +139,10 @@ function UpdateProfile() {
               <EachRow>
                   <EachRowLabel>
                       <OptionTitle>College Regestration Number</OptionTitle>
-                      <InputWithLabel><StudentInput /></InputWithLabel>
+                      <InputWithLabel onChange={getInputValue}
+                      type="text"
+                      id="message"
+                      name="message"><StudentInput /></InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Full Name</OptionTitle>
@@ -266,7 +278,7 @@ function UpdateProfile() {
               </EachRow>
             </StudentContainer>
             <ButtonContainer>
-                <SubmitButton>Update Profile</SubmitButton>
+                <SubmitButton >Update Profile</SubmitButton>
             </ButtonContainer>
         </BodyConatiner>
     </React.Fragment>
