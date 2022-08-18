@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import Navbar from './Navbar';
-import {useRef} from 'react';
+import {useState} from 'react';
 
-function UpdateProfile() {
-
-    const BodyConatiner = styled.div`
+const BodyConatiner = styled.div`
         width: 90vw;
         height: 79.5vh;
         padding: 3vh 5vw; 
@@ -95,7 +93,7 @@ function UpdateProfile() {
         justify-content: center;
       `;
 
-      const SubmitButton = styled.button`
+      const SubmitButton = styled.input`
         width: 10vw;
         height: 5vh;
         background-color: #3498db;
@@ -118,20 +116,60 @@ function UpdateProfile() {
         margin-right: 5px;
       `;
 
+
+function UpdateProfile() {
 // background: #3498db;
 // /*background:linear-gradient(rgb(99, 144, 160),white);*/
 // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-const getInputValue = (event)=>{
-    // show the user input value to console
-    const userValue = event.target.value;
+const [IdNo, setIdNo] = useState('');
+const [Name, setName] = useState('');
+const [Dept, setDept] = useState('');
+const [CrtChoice, setCrtChoice] = useState('');
+const [Cgpa, setCgpa] = useState('');
+const [Backlogs, setBacklogs] = useState('');
+const [Linkdin, setLinkdin] = useState('');
+const [Github, setGithub] = useState('');
+const [Codechef, setCodechef] = useState('');
+const [Codeforces, setCodeforces] = useState('');
+const [LeetCode, setLeetCode] = useState('');
+const [Vjudge, setVjudge] = useState('');
+const [AWSCp, setAWSCp] = useState('');
+const [AWSDa, setAWSDa] = useState('');
 
-    console.log(userValue);
-};
+    const [users, setUser] = useState(
+        {
+            IdNo: '',
+            Name: '',
+            Dept: '',
+            CrtChoice: '',
+            Cgpa: '',
+            Backlogs: '',
+            Linkdin: '',
+            Github: '',
+            Codechef: '',
+            Codeforces: '',
+            LeetCode: '',
+            Vjudge: '',
+            AWSCp: '',
+            AWSDa: ''
+        }
+    )
+  
+    const handleChange = e => {
+      const { name, value } = e.target
+      setUser({
+          ...users,
+          [name]: value
+      })
+  }
+
+    const Submit = (e) => {
+        e.preventDefault(); 
+        console.log(users);
+    }
 
   return (
-
-
     <React.Fragment>
         <BodyConatiner>
           <Title>Student Profile</Title>
@@ -139,16 +177,16 @@ const getInputValue = (event)=>{
               <EachRow>
                   <EachRowLabel>
                       <OptionTitle>College Regestration Number</OptionTitle>
-                      <InputWithLabel onChange={getInputValue}
-                      type="text"
-                      id="message"
-                      name="message"><StudentInput /></InputWithLabel>
+                      <InputWithLabel >
+                            <StudentInput type='text' name="IdNo" onChange={handleChange} />
+                      </InputWithLabel>
+
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Full Name</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Enter Full Name as for ERP</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name="Name" onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -157,15 +195,15 @@ const getInputValue = (event)=>{
                       <OptionTitle>Department</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Select Your Department</InputWithLabelLeft>
-                          <SlectInput>
+                          <SlectInput name='Dept' onChange={handleChange}>
                               <option value="" hidden>Select</option>
                               <option value="1">CSE(Honors)</option>
                               <option value="2">CSE(Regular)</option>
                               <option value="3">ECE</option>
                               <option value="4">EEE</option>
-                              <option value="4">MECHANICAL</option>
-                              <option value="4">IT</option>
-                              <option value="4">CIVIL</option>
+                              <option value="5">MECHANICAL</option>
+                              <option value="6">IT</option>
+                              <option value="7">CIVIL</option>
                           </SlectInput>
                       </InputWithLabel>
                   </EachRowLabel>
@@ -173,7 +211,7 @@ const getInputValue = (event)=>{
                       <OptionTitle>CRT OR NON-CRT</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='15vw'>Select Your Choice</InputWithLabelLeft>
-                          <SlectInput>
+                          <SlectInput name='CrtChoice' onChange={handleChange}>
                               <option value="" hidden>Select</option>
                               <option value="1">YES</option>
                               <option value="2">NO</option>
@@ -186,14 +224,14 @@ const getInputValue = (event)=>{
                       <OptionTitle>Curreent CGPA</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Curreent CGPA(As in ERP)</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Cgpa' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>No Of Active Backlogs</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Enter No Of Active Backlogs</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Backlogs' onChange={handleChange}/>
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -202,14 +240,14 @@ const getInputValue = (event)=>{
                       <OptionTitle>Linkdin</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='21vw'>https://www.linkedin.com/in/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Linkdin' onChange={handleChange}/>
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Github</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='13vw'>https://github.com/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Github' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -222,14 +260,14 @@ const getInputValue = (event)=>{
                       <OptionTitle>Codechef Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='28vw'>https://www.codechef.com/users/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Codechef' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Codeforces Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='25vw'>https://codeforces.com/profile/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Codeforces' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -238,14 +276,14 @@ const getInputValue = (event)=>{
                       <OptionTitle>LeetCode Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='14vw'>https://leetcode.com/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='LeetCode' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Vjudge Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='16vw'>https://vjudge.net/user/</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput name='Vjudge' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -256,17 +294,17 @@ const getInputValue = (event)=>{
               <EachRow>
                   <EachRowLabel>
                       <CheckBoxContainer>
-                          <CheckBox type='checkbox' ></CheckBox>
+                          <CheckBox type='checkbox' name='AWSCp' onChange={handleChange} ></CheckBox>
                           <OptionTitle>AWS Certified Cloud Practitioner</OptionTitle>
                       </CheckBoxContainer>
                       <InputWithLabel>
                           <InputWithLabelLeft size='16vw'>Validation Number</InputWithLabelLeft>
-                          <StudentInput />
+                          <StudentInput  />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <CheckBoxContainer>
-                          <CheckBox type='checkbox' ></CheckBox>
+                          <CheckBox type='checkbox' name='AWSDa' onChange={handleChange} ></CheckBox>
                           <OptionTitle>AWS Certified Developer - Associate</OptionTitle>
                       </CheckBoxContainer>
                       <InputWithLabel>
@@ -278,7 +316,7 @@ const getInputValue = (event)=>{
               </EachRow>
             </StudentContainer>
             <ButtonContainer>
-                <SubmitButton >Update Profile</SubmitButton>
+                <SubmitButton type='submit' onClick={Submit} />
             </ButtonContainer>
         </BodyConatiner>
     </React.Fragment>

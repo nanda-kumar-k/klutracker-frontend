@@ -1,0 +1,21 @@
+useState 
+- const [count, setCount] = useState(0);
+- const [count, setCount] = useState({'name': '', 'age': ''});
+- const [count, setCount] = useState([]);
+    setCount(...count, {'name': '', 'age': ''});
+    setCount(..count, [])
+
+useEffect
+
+- it render first time and then render everytime when count change
+  useEffect(() => {
+    console.log(${count});
+  });
+  useEffect(() => {
+    console.log(${count});
+  }[count]);
+
+  useEffect only instiallly render once
+    useEffect(() => {
+        console.log(${count});
+    }[count], []);

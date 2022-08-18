@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from "gapi-script";
 
-
 const Bodyconatiner = styled.div`
     width: 100%;
     height: 100%;
@@ -115,8 +114,11 @@ const LoginFooter = styled.div`
 `;
 
 
+
+
 function Login() {
 
+    
     gapi.load("client:auth2", () => {
         gapi.client.init({
           clientId:
