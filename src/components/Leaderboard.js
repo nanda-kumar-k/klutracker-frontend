@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-
 const LeaderContainer = styled.div`
     height: 85.5vh;
     
@@ -75,7 +74,9 @@ const Name = styled.p`
 `;
 
 
+
 function leaderboard() {
+    
   return (
     <React.Fragment>
         <LeaderContainer>

@@ -69,7 +69,9 @@ const NavLogout = styled.div`
     color: white;
 `;
 
+
 function Navbar() {
+    
   return (
     <React.Fragment>
         <Navbars>
