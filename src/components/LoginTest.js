@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from "gapi-script";
+import { Navigate } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -20,6 +22,12 @@ function LoginTest() {
         console.log('Login Success:', res.profileObj);
         setShowloginButton(false);
         setShowlogoutButton(true);
+        alert('Login Success');
+        // () => <Navigate to="/nandu" />
+        <Navigate push to="/login"/> 
+        // useHistory.push("/nandu") 
+        // <Navigate to="/nandu" />
+        window.location.href = '/nandu'
     };
 
     const onLoginFailure = (res) => {
