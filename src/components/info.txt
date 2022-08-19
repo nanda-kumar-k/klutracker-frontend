@@ -19,3 +19,106 @@ useEffect
     useEffect(() => {
         console.log(${count});
     }[count], []);
+
+
+
+
+
+   github copilot shortcuts vscode
+    - ctrl + k + ctrl + a for select all
+    - ctel + k + ctrl + b for select all
+    - ctrl + k + ctrl + c for copy
+    - ctrl + k + ctrl + d for cut
+    - ctrl + k + ctrl + e for expand selection
+    - ctrl + k + ctrl + f for find
+    - ctrl + k + ctrl + g for goto definition
+    - ctrl + k + ctrl + h for select all
+    - ctrl + k + ctrl + i for indent
+    - ctrl + k + ctrl + j for join lines
+    - ctrl + k + ctrl + k for cut
+    - ctrl + k + ctrl + l for lowercase
+    - ctrl + k + ctrl + m for format
+    - ctrl + k + ctrl + n for next definition
+    - ctrl + k + ctrl + o for open file
+    - ctrl + k + ctrl + p for paste
+    - ctrl + k + ctrl + q for quick fix
+    - ctrl + k + ctrl + r for rename
+    - ctrl + k + ctrl + s for save
+    - ctrl + k + ctrl + t for toggle comment
+    - ctrl + k + ctrl + u for upper case
+    - ctrl + k + ctrl + v for paste
+    - ctrl + k + ctrl + w for copy
+    - ctrl + k + ctrl + x for cut
+    - ctrl + k + ctrl + y for paste
+    - ctrl + k + ctrl + z for undo
+    - ctrl + k + ctrl + 0 for select all
+    - ctrl + k + ctrl + 1 for select all
+    - ctrl + k + ctrl + 2 for select all
+    - ctrl + k + ctrl + 3 for select all
+    - ctrl + k + ctrl + 4 for select all
+    - ctrl + k + ctrl + 5 for select all
+    - ctrl + k + ctrl + 6 for select all
+    - ctrl + k + ctrl + 7 for select all
+    - ctrl + k + ctrl + 8 for select all
+    - ctrl + k + ctrl + 9 for select all
+    - ctrl + k + ctrl + _ for select all
+    - ctrl + k + ctrl + - for select all
+    - ctrl + k + ctrl + =
+    - ctrl + k + ctrl + [
+    - ctrl + k + ctrl + ]
+    - ctrl + k + ctrl + \
+    - ctrl + k + ctrl + ; for select all
+    - ctrl + k + ctrl + '
+    - ctrl + k + ctrl + `
+    - ctrl + k + ctrl + , for select all
+    - ctrl + k + ctrl + . 
+    - ctrl + k + ctrl + / for select all
+    - ctrl + k + ctrl + \ (backslash)
+    
+
+    export cosnt UserContext = React.createContext();
+
+    <UserContext.Provider value={""}>
+      <UserContext.Consumer>
+        <div>
+          {/* children */}
+        </div>
+      </UserContext.Consumer>
+
+      import {UserContext} from './UserContext';
+      <UserContext.Consumer>
+        {
+          user => {
+            return (
+              <div>
+                {/* children */}
+                {user}
+              </div>
+            )
+          }
+        }
+      }
+    </UserContext.Consumer>
+
+
+    or 
+    const user = useContext(UserContext);
+
+    return(
+      <div>
+        {/* children */}
+        {user}
+      </div>
+    )
+    )
+
+
+
+    export const UserProvider = ({children}) => {
+        const [user, setUser] = useState(null);
+        return (
+            <UserContext.Provider value={[user, setUser]}>
+                {children}
+            </UserContext.Provider>
+        );
+    }

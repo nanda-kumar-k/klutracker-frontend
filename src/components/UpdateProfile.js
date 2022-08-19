@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import {useState} from 'react';
+import { useContext } from 'react';
+import { UserContext } from './Login';
+import { useParams } from 'react-router-dom';
 
 const BodyConatiner = styled.div`
         width: 90vw;
@@ -122,21 +125,22 @@ function UpdateProfile() {
 // /*background:linear-gradient(rgb(99, 144, 160),white);*/
 // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-const [IdNo, setIdNo] = useState('');
-const [Name, setName] = useState('');
-const [Dept, setDept] = useState('');
-const [CrtChoice, setCrtChoice] = useState('');
-const [Cgpa, setCgpa] = useState('');
-const [Backlogs, setBacklogs] = useState('');
-const [Linkdin, setLinkdin] = useState('');
-const [Github, setGithub] = useState('');
-const [Codechef, setCodechef] = useState('');
-const [Codeforces, setCodeforces] = useState('');
-const [LeetCode, setLeetCode] = useState('');
-const [Vjudge, setVjudge] = useState('');
-const [AWSCp, setAWSCp] = useState('');
-const [AWSDa, setAWSDa] = useState('');
-
+// const [IdNo, setIdNo] = useState('');
+// const [Name, setName] = useState('');
+// const [Dept, setDept] = useState('');
+// const [CrtChoice, setCrtChoice] = useState('');
+// const [Cgpa, setCgpa] = useState('');
+// const [Backlogs, setBacklogs] = useState('');
+// const [Linkdin, setLinkdin] = useState('');
+// const [Github, setGithub] = useState('');
+// const [Codechef, setCodechef] = useState('');
+// const [Codeforces, setCodeforces] = useState('');
+// const [LeetCode, setLeetCode] = useState('');
+// const [Vjudge, setVjudge] = useState('');
+// const [AWSCp, setAWSCp] = useState('');
+// const [AWSDa, setAWSDa] = useState('');
+    const email = window.localStorage.getItem('email');
+    const imgurl = window.localStorage.getItem('imageurl');
     const [users, setUser] = useState(
         {
             IdNo: '',
@@ -152,7 +156,9 @@ const [AWSDa, setAWSDa] = useState('');
             LeetCode: '',
             Vjudge: '',
             AWSCp: '',
-            AWSDa: ''
+            AWSDa: '',
+            email: email,
+            img : imgurl,
         }
     )
   
@@ -162,21 +168,34 @@ const [AWSDa, setAWSDa] = useState('');
           ...users,
           [name]: value
       })
-  }
+    }
 
     const Submit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
+        // setUser({
+        //     ...users,
+        //     email: localStorage.getItem('email'),
+        //     img: localStorage.getItem('imageurl')
+        // })
         console.log(users);
     }
 
+    
+    // const {email} = useParams();
+  
+    useEffect(() => {
+        console.log(email);
+    } , [email]);
+
   return (
     <React.Fragment>
+        <Navbar/>
         <BodyConatiner>
           <Title>Student Profile</Title>
           <StudentContainer size='50vh'>
               <EachRow>
                   <EachRowLabel>
-                      <OptionTitle>College Regestration Number</OptionTitle>
+                      <OptionTitle>College Regestration Number </OptionTitle>
                       <InputWithLabel >
                             <StudentInput type='text' name="IdNo" onChange={handleChange} />
                       </InputWithLabel>
@@ -197,24 +216,25 @@ const [AWSDa, setAWSDa] = useState('');
                           <InputWithLabelLeft size='20vw'>Select Your Department</InputWithLabelLeft>
                           <SlectInput name='Dept' onChange={handleChange}>
                               <option value="" hidden>Select</option>
-                              <option value="1">CSE(Honors)</option>
-                              <option value="2">CSE(Regular)</option>
-                              <option value="3">ECE</option>
-                              <option value="4">EEE</option>
-                              <option value="5">MECHANICAL</option>
-                              <option value="6">IT</option>
-                              <option value="7">CIVIL</option>
+                              <option value="AIDS">AIDS</option>
+                              <option value="CSE(Honors)">CSE(Honors)</option>
+                              <option value="CSE(Regular)">CSE(Regular)</option>
+                              <option value="IT">CS&IT</option>
+                              <option value="CIVIL">CIVIL</option>
+                              <option value="ECE">ECE</option>
+                              <option value="EEE">EEE</option>
+                              <option value="MECHANICAL">MECHANICAL</option>  
                           </SlectInput>
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
-                      <OptionTitle>CRT OR NON-CRT</OptionTitle>
+                      <OptionTitle>CRT</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='15vw'>Select Your Choice</InputWithLabelLeft>
                           <SlectInput name='CrtChoice' onChange={handleChange}>
                               <option value="" hidden>Select</option>
-                              <option value="1">YES</option>
-                              <option value="2">NO</option>
+                              <option value="True">YES</option>
+                              <option value="False">NO</option>
                           </SlectInput>
                       </InputWithLabel>
                   </EachRowLabel>

@@ -85,9 +85,11 @@ function Navbar() {
                 <NavLogo>
                     <NavLogoText>KLU T</NavLogoText>
                 </NavLogo>
-                    <Link to="/nandu">Dogs</Link>
+                    <Link to="/">Dogs</Link>
                     <Link to="/updateprofile">Update Profile</Link>
                     <Link to="/leaderboard">Leaderboard</Link>
+                    <Link to="/profile">profile</Link>
+                    <Link to="/gmail">Gmail</Link>
                 <NavLogout>
                     <p>Logout</p>
                 </NavLogout>

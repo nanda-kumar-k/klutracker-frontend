@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
+import Navbar from './Navbar';
+
 const LeaderContainer = styled.div`
     height: 85.5vh;
     
@@ -79,6 +81,7 @@ function leaderboard() {
     
   return (
     <React.Fragment>
+        <Navbar/>
         <LeaderContainer>
             <LeaderboardHeader>
                 <UserProfileContainer>

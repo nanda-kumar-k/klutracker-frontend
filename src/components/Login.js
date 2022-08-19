@@ -1,9 +1,13 @@
 import styled from 'styled-components'
 import klubg from '../static/images/klu.gif'
 import klulogo from '../static/images/klulogo.png'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from "gapi-script";
+import { Navigate } from "react-router-dom";
+import Navbar from './Navbar';
+// import App from './Apps';
+
 
 const Bodyconatiner = styled.div`
     width: 100%;
@@ -11,7 +15,7 @@ const Bodyconatiner = styled.div`
     position: relative;
 `;
 
-const Navbar = styled.div`
+const Navbars = styled.div`
     background-color: #A51C24;
     width: 100%;
     height: 5vh;
@@ -113,49 +117,69 @@ const LoginFooter = styled.div`
     background-color: #A51C24;
 `;
 
-
+export const UserContext = React.createContext();
 
 
 function Login() {
 
-    
-    gapi.load("client:auth2", () => {
+    useEffect(() => {
+        gapi.load("auth2", 
+    () => {
         gapi.client.init({
           clientId:
             '887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com',
-          plugin_name: "chat",
-        });
-      });
+            plugin_name: "chat",
+            scope: "profile email",
+            cookiepolicy: 'single_host_origin',
+            
+        })
+      }); 
+    } , []);
+
+    
+    /* gapi.load("client:auth2", 
+    () => {
+        gapi.client.init({
+          clientId:
+            '887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com',
+            plugin_name: "chat",
+        })
+      }); */
+
+    const [email, setEmail] = useState('');
+    const [imageurl , setImageurl] = useState('');
+    
 
     const [loginChoice, setLoginChoice] = React.useState('none');
-    const [showloginButton, setShowloginButton] = useState(true);
-    const [showlogoutButton, setShowlogoutButton] = useState(false);
     const onLoginSuccess = (res) => {
-        console.log('Login Success:', res.profileObj);
-        setShowloginButton(false);
-        setShowlogoutButton(true);
+        console.log(res);
+        setEmail(res.profileObj.email);
+        setImageurl(res.profileObj.imageUrl);
+        console.log(res.profileObj.imageUrl);
+        console.log(res.profileObj.email);
+        console.log(res.profileObj.name);
+        window.localStorage.setItem('email', res.profileObj.email);
+        window.localStorage.setItem('imageurl', res.profileObj.imageUrl);
+        window.localStorage.setItem('name', res.profileObj.name);
+        window.location.href = '/updateprofile';
+        /* window.location.href = `/updateprofile/${res.profileObj.email}/${res.profileObj.imageUrl}`; */
     };
 
     const onLoginFailure = (res) => {
-        console.log('Login Failed:', res);
+        setLoginChoice('flex');
+        /* console.log('Login Failed:', res); */
     };
 
-    const onSignoutSuccess = () => {
-        alert("You have been logged out successfully");
-        console.clear();
-        setShowloginButton(true);
-        setShowlogoutButton(false);
-    };
     
 
-  return (
-    <React.Fragment>
+    return (
+    <UserContext.Provider value={'nanduuuu'}>
           <Bodyconatiner>
-                <Navbar>
+                <Navbars>
                     <LoginA href="#"  onClick={()=> {setLoginChoice('flex')}}>
                         <h3>Login</h3>
                     </LoginA>
-                </Navbar>
+                </Navbars>
                 <ImgContainer>
                     <BgImage src={klubg} alt="klu" />
                 </ImgContainer>
@@ -175,7 +199,7 @@ function Login() {
                                 <LoginBody>
                                 <GoogleLogin
                                     clientId="887149817062-sd5m283jb38o0hi12ksiot85bar7qae1.apps.googleusercontent.com"
-                                    buttonText="Sign In"
+                                    buttonText="Sign In Google"
                                     onSuccess={onLoginSuccess}
                                     onFailure={onLoginFailure}
                                     cookiePolicy={'single_host_origin'}
@@ -188,8 +212,10 @@ function Login() {
                     </LoginHeader>
                 </LoginContainer>
             </Bodyconatiner>
-    </React.Fragment>
+       
+    </UserContext.Provider>
   )
 }
+
 
 export default Login;
