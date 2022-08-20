@@ -6,6 +6,7 @@ import UpdateProfile from './components/UpdateProfile';
 import StudentHome from './components/StudentHome';
 import Leaderboard from './components/Leaderboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+var cors = require('cors')
 function App() {
   return (
     <div className="App">
@@ -22,5 +23,5 @@ function App() {
     </div>
   );
 }
-
+App.use(cors())
 export default App;
