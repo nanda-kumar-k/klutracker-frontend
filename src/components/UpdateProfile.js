@@ -5,6 +5,8 @@ import {useState} from 'react';
 import { useContext } from 'react';
 import { UserContext } from './Login';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
 
 const BodyConatiner = styled.div`
         width: 90vw;
@@ -125,9 +127,9 @@ function UpdateProfile() {
 // /*background:linear-gradient(rgb(99, 144, 160),white);*/
 // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-// const [IdNo, setIdNo] = useState('');
+// const [cllg_id, setcllg_id] = useState('');
 // const [Name, setName] = useState('');
-// const [Dept, setDept] = useState('');
+// const [department, setdepartment] = useState('');
 // const [CrtChoice, setCrtChoice] = useState('');
 // const [Cgpa, setCgpa] = useState('');
 // const [Backlogs, setBacklogs] = useState('');
@@ -143,22 +145,22 @@ function UpdateProfile() {
     const imgurl = window.localStorage.getItem('imageurl');
     const [users, setUser] = useState(
         {
-            IdNo: '',
-            Name: '',
-            Dept: '',
-            CrtChoice: '',
-            Cgpa: '',
-            Backlogs: '',
-            Linkdin: '',
-            Github: '',
-            Codechef: '',
-            Codeforces: '',
-            LeetCode: '',
-            Vjudge: '',
-            AWSCp: '',
-            AWSDa: '',
-            email: email,
-            img : imgurl,
+            cllg_id: '',
+            name: '',
+            department: '',
+            crtchoice: '',
+            cgpa: '',
+            no_of_active_backlogs: '',
+            linkdin: '',
+            github: '',
+            codechef_handle: '',
+            codeforces_handle: '',
+            leetcode_handle: '',
+            vjudge_handle: '',
+            aws_cp: '',
+            aws_da: '',
+            email: 'emailwwwwwseeewwwwwwgmailcom',
+            img : 'imgurl',
         }
     )
   
@@ -178,6 +180,33 @@ function UpdateProfile() {
         //     img: localStorage.getItem('imageurl')
         // })
         console.log(users);
+        axios.post('http://127.0.0.1:8000/updateprofile/', users)
+        .then(res => {
+            console.log(res.data);
+            // window.location.href = '/profile';
+        }).catch(err => {
+            console.log(err);
+        }).finally(() => {
+            console.log('finally');
+        })
+
+        // console.log(users);
+
+        // fetch('http://127.0.0.1:8000/updateprofile/ ', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': 'JWT ' + localStorage.getItem('token')
+        //     },
+        //     body: JSON.stringify(users)
+        // }).then(res => {
+        //     console.log(res);
+        //     // window.location.href = '/profile';
+        // }).catch(err => {
+        //     console.log(err);
+        // }).finally(() => {
+        //     console.log('finally');
+        // })
     }
 
     
@@ -197,7 +226,7 @@ function UpdateProfile() {
                   <EachRowLabel>
                       <OptionTitle>College Regestration Number </OptionTitle>
                       <InputWithLabel >
-                            <StudentInput type='text' name="IdNo" onChange={handleChange} />
+                            <StudentInput type='text' name="cllg_id" onChange={handleChange} />
                       </InputWithLabel>
 
                   </EachRowLabel>
@@ -205,7 +234,7 @@ function UpdateProfile() {
                       <OptionTitle>Full Name</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Enter Full Name as for ERP</InputWithLabelLeft>
-                          <StudentInput name="Name" onChange={handleChange} />
+                          <StudentInput name="name" onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -214,7 +243,7 @@ function UpdateProfile() {
                       <OptionTitle>Department</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Select Your Department</InputWithLabelLeft>
-                          <SlectInput name='Dept' onChange={handleChange}>
+                          <SlectInput name='department' onChange={handleChange}>
                               <option value="" hidden>Select</option>
                               <option value="AIDS">AIDS</option>
                               <option value="CSE(Honors)">CSE(Honors)</option>
@@ -231,7 +260,7 @@ function UpdateProfile() {
                       <OptionTitle>CRT</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='15vw'>Select Your Choice</InputWithLabelLeft>
-                          <SlectInput name='CrtChoice' onChange={handleChange}>
+                          <SlectInput name='crtchoice' onChange={handleChange}>
                               <option value="" hidden>Select</option>
                               <option value="True">YES</option>
                               <option value="False">NO</option>
@@ -244,14 +273,14 @@ function UpdateProfile() {
                       <OptionTitle>Curreent CGPA</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Curreent CGPA(As in ERP)</InputWithLabelLeft>
-                          <StudentInput name='Cgpa' onChange={handleChange} />
+                          <StudentInput name='cgpa' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>No Of Active Backlogs</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='20vw'>Enter No Of Active Backlogs</InputWithLabelLeft>
-                          <StudentInput name='Backlogs' onChange={handleChange}/>
+                          <StudentInput name='no_of_active_backlogs' onChange={handleChange}/>
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -260,14 +289,14 @@ function UpdateProfile() {
                       <OptionTitle>Linkdin</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='21vw'>https://www.linkedin.com/in/</InputWithLabelLeft>
-                          <StudentInput name='Linkdin' onChange={handleChange}/>
+                          <StudentInput name='linkdin' onChange={handleChange}/>
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Github</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='13vw'>https://github.com/</InputWithLabelLeft>
-                          <StudentInput name='Github' onChange={handleChange} />
+                          <StudentInput name='github' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -280,14 +309,14 @@ function UpdateProfile() {
                       <OptionTitle>Codechef Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='28vw'>https://www.codechef.com/users/</InputWithLabelLeft>
-                          <StudentInput name='Codechef' onChange={handleChange} />
+                          <StudentInput name='codechef_handle' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Codeforces Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='25vw'>https://codeforces.com/profile/</InputWithLabelLeft>
-                          <StudentInput name='Codeforces' onChange={handleChange} />
+                          <StudentInput name='codeforces_handle' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -296,14 +325,14 @@ function UpdateProfile() {
                       <OptionTitle>LeetCode Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='14vw'>https://leetcode.com/</InputWithLabelLeft>
-                          <StudentInput name='LeetCode' onChange={handleChange} />
+                          <StudentInput name='leetcode_handle' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
                   <EachRowLabel>
                       <OptionTitle>Vjudge Handle</OptionTitle>
                       <InputWithLabel>
                           <InputWithLabelLeft size='16vw'>https://vjudge.net/user/</InputWithLabelLeft>
-                          <StudentInput name='Vjudge' onChange={handleChange} />
+                          <StudentInput name='vjudge_handle' onChange={handleChange} />
                       </InputWithLabel>
                   </EachRowLabel>
               </EachRow>
@@ -314,7 +343,7 @@ function UpdateProfile() {
               <EachRow>
                   <EachRowLabel>
                       <CheckBoxContainer>
-                          <CheckBox type='checkbox' name='AWSCp' onChange={handleChange} ></CheckBox>
+                          <CheckBox type='checkbox' name='aws_cp' onChange={handleChange} ></CheckBox>
                           <OptionTitle>AWS Certified Cloud Practitioner</OptionTitle>
                       </CheckBoxContainer>
                       <InputWithLabel>
@@ -324,7 +353,7 @@ function UpdateProfile() {
                   </EachRowLabel>
                   <EachRowLabel>
                       <CheckBoxContainer>
-                          <CheckBox type='checkbox' name='AWSDa' onChange={handleChange} ></CheckBox>
+                          <CheckBox type='checkbox' name='aws_da' onChange={handleChange} ></CheckBox>
                           <OptionTitle>AWS Certified Developer - Associate</OptionTitle>
                       </CheckBoxContainer>
                       <InputWithLabel>
